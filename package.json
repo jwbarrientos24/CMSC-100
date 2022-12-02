@@ -1,0 +1,25 @@
+{
+  "name": "cmsc-100",
+  "version": "0.0.1",
+  "description": "Todo App",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwbarrientos24/CMSC-100.git"
+  },
+  "keywords": [
+    "Node",
+    "JS",
+    "Web",
+    "Server"
+  ],
+  "author": "John Paul Barrientos",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jwbarrientos24/CMSC-100/issues"
+  },
+  "homepage": "https://github.com/jwbarrientos24/CMSC-100#readme"
+}
