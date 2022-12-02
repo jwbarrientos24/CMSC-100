@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Todo app",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,6 +36,7 @@
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-mocha": "10.0.5",
     "eslint-plugin-promise": "6.0.0",
+    "nodemon": "^2.0.20",
     "semistandard": "^16.0.1"
   },
   "semistandard": {
@@ -48,5 +50,8 @@
     "parser": "@babel/eslint-parser",
     "env": [],
     "globals": []
+  },
+  "dependencies": {
+    "fastify": "^4.10.2"
   }
 }
