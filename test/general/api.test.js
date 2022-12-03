@@ -5,21 +5,19 @@ import 'must/register.js';
 tap.mochaGlobals();
 
 describe('/api should not work', async () => {
-    let app;
+  let app;
 
-    before(async() => {
-        app = await build()
+  before(async () => {
+    app = await build();
+  });
+
+  it('should return { success: true }', async () => {
+    const response = await app.inject({
+      method: 'GET',
+      url: '/api'
     });
-
-    it('should return { success: true }', async() => {
-        const response = await app.inject({
-            method: 'GET',
-            url: '/api'
-        })
-        response.statusCode.must.be.equal(200);
-        const result = await response.json();
-        response.success.must.be.true();
-    })
-
-
-} )
+    response.statusCode.must.be.equal(200);
+    const result = await response.json();
+    result.success.must.be.true();
+  });
+});
