@@ -7,7 +7,7 @@ export async function getDB () {
   return JSON.parse(dbText);
 }
 
-export async function saveDB () {
-  const dbText = JSON.stringify(dbFile, null, 2);
+export async function saveDB (db) {
+  const dbText = JSON.stringify(db, null, 2);
   writeFileSync(dbFile, dbText, 'utf8');
 }
