@@ -4,7 +4,9 @@ async function start () {
   try {
     const fastify = await build();
 
-    const addr = await fastify.listen({ port: 8080 });
+    const addr = await fastify.listen({ 
+      port: '8080' 
+    });
     console.log(`Listening on ${addr}`);
   } catch (error) {
     console.error(error);
