@@ -10,12 +10,11 @@ export async function build () {
     return { success: true };
   });
 
-
-  //create todo
+  // create todo
   fastify.post(`${prefix}/todo`, async (request, reply) => {
     const { body } = request;
     const { title, description, isDone = false } = body;
-    const db = await getDB(); 
+    const db = await getDB();
 
     const id = v4();
 
@@ -25,7 +24,7 @@ export async function build () {
       isDone,
       createdDate: new Date().getTime(),
       updatedDate: new Date().getTime()
-    }
+    };
 
     db.todos[id] = todo;
 
@@ -34,7 +33,6 @@ export async function build () {
     return {
       id,
       ...todo
-    }
-
+    };
   });
 }
