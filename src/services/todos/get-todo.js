@@ -7,6 +7,12 @@ export const getTodo = async (request, reply) => {
 
   const { todos } = db;
 
+  if (!todos[id]) {
+    return {
+      error: 'notfound'
+    };
+  }
+
   return {
     id,
     ...todos[id]
