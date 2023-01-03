@@ -1,10 +1,14 @@
 import Fastify from 'fastify';
-import { createTodo } from './services/todos/create-todo.js';
-import { general } from './services/general/index.js';
-import { getManyTodo } from './services/todos/get-many-todo.js';
-import { getTodo } from './services/todos/get-todo.js';
-import { updateTodo } from './services/todos/update-todo.js';
-import { deleteTodo } from './services/todos/delete-todo.js';
+import openAPIGlue from 'fastify-openapi-glue';
+import swagger from '@fastify/swagger';
+
+// import sensible from '@fastify/sensible';
+// import { createTodo } from './services/todos/create-todo.js';
+// import { general } from './services/general/index.js';
+// import { getManyTodo } from './services/todos/get-many-todo.js';
+// import { getTodo } from './services/todos/get-todo.js';
+// import { updateTodo } from './services/todos/update-todo.js';
+// import { deleteTodo } from './services/todos/delete-todo.js';
 
 const prefix = '/api';
 
@@ -12,18 +16,29 @@ export async function build () {
   const fastify = Fastify({ logger: true });
   fastify.get(prefix, general);
 
-  // create todo
-  fastify.post(`${prefix}/todo`, createTodo);
+  const openAPIGlueOptions = (
+    prefix
+  );
 
-  // get many todo
-  fastify.get(`${prefix}/todo`, getManyTodo);
+  const swaggerOptions = {
+    exposeRoute: true
+  };
 
-  // get one todo
-  fastify.get(`${prefix}/todo/:todoId`, getTodo);
+  fastify.register(swagger, swaggerOptions);
+  fastify.register(openAPIGlue, openAPIGlueOptions);
+  
+  // // create todo
+  // fastify.post(`${prefix}/todo`, createTodo);
 
-  // update one todo
-  fastify.put(`${prefix}/todo/:todoId`, updateTodo);
+  // // get many todo
+  // fastify.get(`${prefix}/todo`, getManyTodo);
 
-  // delete one todo
-  fastify.delete(`${prefix}/todo/:todoId`, deleteTodo);
+  // // get one todo
+  // fastify.get(`${prefix}/todo/:todoId`, getTodo);
+
+  // // update one todo
+  // fastify.put(`${prefix}/todo/:todoId`, updateTodo);
+
+  // // delete one todo
+  // fastify.delete(`${prefix}/todo/:todoId`, deleteTodo);
 }
