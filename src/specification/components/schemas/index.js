@@ -39,5 +39,19 @@ export const schemas = {
             'title',
             'description'
         ]
+    },
+    TodoRequestObject: {
+        type: 'object',
+        properties: {
+            title: {
+                type: 'string'
+            },
+            description: {
+                type: 'string'
+            },
+            isDone: {
+                type: 'boolean'
+            }
+        }
     }
 };
