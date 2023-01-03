@@ -6,21 +6,25 @@ tap.mochaGlobals();
 
 const prefix = '/api';
 
-describe('Get a todo should work', async () => {
+describe('Update a todo should work', async () => {
   let app;
 
   before(async () => {
     app = await build();
   });
 
-  it('Should return the object given an id', async () => {
+  it('Should update the object given an id', async () => {
     const newTodo = {
       title: 'New Todo for get',
       description: 'Test description'
     };
 
+    const newerTodo = {
+      title: 'New Todo for update'
+    };
+
     const createResponse = await app.inject({
-      method: 'POST',
+      method: 'PUT',
       url: `${prefix}/todo`,
       headers: {
         'Content-Type': 'application/json'
@@ -28,11 +32,15 @@ describe('Get a todo should work', async () => {
       body: JSON.stringify(newTodo)
     });
 
-    const { id } = await createResponse.json();
+    const { id, createdDate, updatedDate } = await createResponse.json();
 
     const response = await app.inject({
       method: 'GET',
-      url: `${prefix}/todo/${id}`
+      url: `${prefix}/todo/${id}`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newerTodo)
     });
 
     // this checks if HTTP status code is equal to 200
@@ -43,12 +51,12 @@ describe('Get a todo should work', async () => {
     // expect that id exists
     result.id.must.equal(id);
     // expect that all of the values should be equal to newTodo properties
-    result.title.must.be.equal(newTodo.title);
+    result.title.must.be.equal(newerTodo.title);
     result.description.must.be.equal(newTodo.description);
     // expect taht isDone is false because it was not given
     result.isDone.must.be.false();
     // expect createdDate and updatedDate is not null
-    result.createdDate.must.not.be.null();
-    result.updatedDate.must.not.be.null();
+    result.createdDate.must.be.equal(createdDate);
+    result.updatedDate.must.not.be.above(updatedDate);
   });
 });
