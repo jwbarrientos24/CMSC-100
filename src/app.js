@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
 import openAPIGlue from 'fastify-openapi-glue';
 import swagger from '@fastify/swagger';
+import { Service } from './services/index.js';
+import { specification } from './specification/index.js';
 
 // import sensible from '@fastify/sensible';
 // import { createTodo } from './services/todos/create-todo.js';
@@ -14,19 +16,26 @@ const prefix = '/api';
 
 export async function build () {
   const fastify = Fastify({ logger: true });
-  fastify.get(prefix, general);
+  // fastify.register(sensible);
+  // fastify.get(prefix, general); 
+
+  const service = new Service();
 
   const openAPIGlueOptions = (
+    specification,
+    service,
     prefix
   );
 
   const swaggerOptions = {
+    openapi: specification,
+    routePrefix: '/docs',
     exposeRoute: true
   };
 
   fastify.register(swagger, swaggerOptions);
   fastify.register(openAPIGlue, openAPIGlueOptions);
-  
+
   // // create todo
   // fastify.post(`${prefix}/todo`, createTodo);
 
