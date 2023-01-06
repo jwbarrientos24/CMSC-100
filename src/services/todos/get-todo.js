@@ -8,10 +8,10 @@ export const getTodo = async (request, reply) => {
   const { todos } = db;
 
   if (!todos[id]) {
-    return {
-      error: 'notfound'
-    };
-    // return reply.notFound();
+    // return {
+    //   error: 'notfound'
+    // };
+    return reply.notFound();
   }
 
   return {
