@@ -11,6 +11,7 @@ export const getTodo = async (request, reply) => {
     return {
       error: 'notfound'
     };
+    // return reply.notFound();
   }
 
   return {

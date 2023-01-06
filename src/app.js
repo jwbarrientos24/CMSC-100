@@ -1,4 +1,5 @@
 import Fastify from 'fastify';
+// import fastifySensible from '@fastify/sensible';
 import { createTodo } from './services/todos/create-todo.js';
 import { general } from './services/general/index.js';
 import { getManyTodo } from './services/todos/get-many-todo.js';
