@@ -34,6 +34,7 @@
     "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
     "c8": "^7.12.0",
+    "chance": "^1.1.9",
     "eslint": "8.19.0",
     "eslint-config-semistandard": "16.0.0",
     "eslint-config-standard": "17.0.0",
@@ -68,6 +69,14 @@
     ]
   },
   "dependencies": {
-    "fastify": "^4.10.2"
+    "@fastify/cookie": "^8.3.0",
+    "@fastify/jwt": "^6.5.0",
+    "@fastify/secure-session": "^5.3.0",
+    "@fastify/sensible": "^5.2.0",
+    "@fastify/swagger": "^7.6.1",
+    "bcrypt": "^5.1.0",
+    "fastify": "^4.11.0",
+    "fastify-openapi-glue": "^4.1.1",
+    "uuid": "^9.0.0"
   }
 }
