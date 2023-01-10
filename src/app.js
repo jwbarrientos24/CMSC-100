@@ -17,7 +17,7 @@ const prefix = '/api';
 export async function build () {
   const fastify = Fastify({ logger: true });
   // fastify.register(sensible);
-  // fastify.get(prefix, general); 
+  // fastify.get(prefix, general);
 
   const service = new Service();
 
@@ -50,4 +50,5 @@ export async function build () {
 
   // // delete one todo
   // fastify.delete(`${prefix}/todo/:todoId`, deleteTodo);
+  return fastify;
 }
