@@ -10,16 +10,19 @@ export const todo = {
       ],
       responses: {
         200: {
-          description: 'a todo object',
+          description: 'A todo object',
           content: {
-            'application.json': {
+            'application/json': {
               schema: {
                 $ref: '#/components/schemas/TodoObject'
               }
             }
           }
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     put: {
       summary: 'Update a todo',
@@ -30,27 +33,31 @@ export const todo = {
         }
       ],
       requestBody: {
-        description: 'The request body for todo',
+        description: 'THe request body for todo',
         content: {
           'application/json': {
             schema: {
               $ref: '#/components/schemas/TodoRequestObject'
             }
           }
-        }
+        },
+        required: true
       },
       responses: {
         200: {
-          description: 'a todo object',
+          description: 'A todo object',
           content: {
-            'application.json': {
+            'application/json': {
               schema: {
                 $ref: '#/components/schemas/TodoObject'
               }
             }
           }
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     delete: {
       summary: 'Delete a todo',
@@ -62,7 +69,7 @@ export const todo = {
       ],
       responses: {
         200: {
-          description: 'success',
+          description: 'successful response',
           content: {
             'application/json': {
               schema: {
@@ -76,7 +83,10 @@ export const todo = {
             }
           }
         }
-      }
+      },
+      security: [
+        {}
+      ]
     }
   },
   '/todo': {
@@ -84,7 +94,7 @@ export const todo = {
       summary: 'Create a todo',
       operationId: 'createTodo',
       requestBody: {
-        description: 'The request body for todo',
+        description: 'THe request body for todo',
         content: {
           'application/json': {
             schema: {
@@ -96,19 +106,22 @@ export const todo = {
       },
       responses: {
         200: {
-          description: 'a todo object',
+          description: 'A todo object',
           content: {
-            'application.json': {
+            'application/json': {
               schema: {
                 $ref: '#/components/schemas/TodoObject'
               }
             }
           }
         }
-      }
+      },
+      security: [
+        {}
+      ]
     },
     get: {
-      summary: 'get many todo',
+      summary: 'Get many todo',
       operationId: 'getManyTodo',
       parameters: [
         {
@@ -122,7 +135,7 @@ export const todo = {
       ],
       responses: {
         200: {
-          description: 'a todo object',
+          description: 'A todo object',
           content: {
             'application/json': {
               schema: {
@@ -134,8 +147,10 @@ export const todo = {
             }
           }
         }
-      }
-
+      },
+      security: [
+        {}
+      ]
     }
   }
 };

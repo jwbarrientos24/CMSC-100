@@ -4,6 +4,8 @@ import { deleteTodo } from './todos/delete-todo.js';
 import { getManyTodo } from './todos/get-many-todo.js';
 import { getTodo } from './todos/get-todo.js';
 import { updateTodo } from './todos/update-todo.js';
+import { login } from './user/login.js';
+import { logout } from './user/logout.js';
 import { registerUser } from './user/register-user.js';
 
 export class Service {
@@ -20,4 +22,6 @@ export class Service {
 
   // user functions
   registerUser = registerUser
+  login = login
+  logout = logout
 }
