@@ -13,10 +13,10 @@ describe('Creating a todo should work', async () => {
     app = await build();
   });
 
-  it('Should return the object that was created with ID and isDone = false without isDone being given', async () => {
+  it('Should return the object that was created with ID with isDone = false without isDone being given', async () => {
     const newTodo = {
       title: 'New Todo',
-      description: 'Test description'
+      description: 'Some description'
     };
 
     const response = await app.inject({
@@ -48,7 +48,7 @@ describe('Creating a todo should work', async () => {
   it('Should return the object that was created with ID with isDone = to the given object', async () => {
     const newTodo = {
       title: 'New Todo 2',
-      description: 'Test description 2',
+      description: 'Some description 2',
       isDone: true
     };
 
