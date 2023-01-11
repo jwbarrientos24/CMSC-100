@@ -4,13 +4,15 @@ export const user = {
       summary: 'Register a new user',
       operationId: 'registerUser',
       requestBody: {
-        $ref: '#/components/requestBodies/requestNewUser'
+        $ref: '#/components/requestBodies/RequestNewUser'
       },
       responses: {
-        200: { $ref: '#/components/responses/SuccessfulUserResponse' }
+        200: {
+          $ref: '#/components/responses/SuccessfulUserResponse'
+        }
       },
       security: [
-        { }
+        {}
       ]
     }
   },
@@ -19,22 +21,42 @@ export const user = {
       summary: 'Logs in a user',
       operationId: 'login',
       requestBody: {
-        $ref: '#/components/requestBodies/requestNewUser'
+        $ref: '#/components/requestBodies/LoginUser'
       },
       responses: {
-        200: { $ref: '#/components/responses/SuccessfulResponse' }
+        200: {
+          $ref: '#/components/responses/SuccessfulResponse'
+        }
       },
       security: [
-        { }
+        {}
       ]
     }
   },
   '/logout': {
     get: {
-      summary: 'logs out a user',
+      summary: 'Logs out a user',
       operationId: 'logout',
       responses: {
-        200: { $ref: '#/components/responses/SuccessfulResponse' }
+        200: {
+          $ref: '#/components/responses/SuccessfulResponse'
+        }
+      },
+      security: [
+        {
+          cookieAuth: []
+        }
+      ]
+    }
+  },
+  '/auth-check': {
+    get: {
+      summary: 'Checks if user is logged in',
+      operationId: 'authCheck',
+      responses: {
+        200: {
+          $ref: '#/components/responses/SuccessfulResponse'
+        }
       },
       security: [
         {

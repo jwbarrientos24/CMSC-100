@@ -6,6 +6,7 @@ import { getTodo } from './todos/get-todo.js';
 import { updateTodo } from './todos/update-todo.js';
 import { login } from './user/login.js';
 import { logout } from './user/logout.js';
+import { authCheck } from './user/auth-check.js';
 import { registerUser } from './user/register-user.js';
 
 export class Service {
@@ -24,4 +25,5 @@ export class Service {
   registerUser = registerUser
   login = login
   logout = logout
+  authCheck = authCheck
 }

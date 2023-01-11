@@ -1,5 +1,5 @@
 import tap from 'tap';
-import { build } from '../../src/app.js';
+import { build } from '../../../src/app.js';
 import 'must/register.js';
 import Chance from 'chance';
 
@@ -9,11 +9,13 @@ tap.mochaGlobals();
 
 const prefix = '/api';
 
-describe('Logging out a user should work', async () => {
+describe('Get many todo should work', async () => {
   let app;
 
   before(async () => {
-    app = await build();
+    app = await build({
+      forceCloseConnections: true
+    });
   });
 
   const newUser = {
@@ -69,30 +71,43 @@ describe('Logging out a user should work', async () => {
     cookie = response.headers['set-cookie'];
   });
 
-  it('Logout should work', async () => {
+  it('Should return a list of objects with default limit', async () => {
     const response = await app.inject({
       method: 'GET',
-      url: `${prefix}/logout`,
       headers: {
-        'Content-Type': 'application/json',
         cookie
-      }
+      },
+      url: `${prefix}/todo`
     });
 
-    // this checks if HTTP status code is equal to 401
+    // this checks if HTTP status code is equal to 200
     response.statusCode.must.be.equal(200);
+
+    const result = await response.json();
+
+    // expect that id exists
+    result.length.must.not.be.above(5);
   });
 
-  it('Logout should return an error without a cookie', async () => {
+  it('Should return a list of objects with default limit', async () => {
     const response = await app.inject({
       method: 'GET',
-      url: `${prefix}/logout`,
       headers: {
-        'Content-Type': 'application/json'
-      }
+        cookie
+      },
+      url: `${prefix}/todo?limit=2`
     });
 
-    // this checks if HTTP status code is equal to 401
-    response.statusCode.must.be.equal(401);
+    // this checks if HTTP status code is equal to 200
+    response.statusCode.must.be.equal(200);
+
+    const result = await response.json();
+
+    // expect that id exists
+    result.length.must.not.be.above(2);
+  });
+
+  after(async () => {
+    await app.close();
   });
 });

@@ -4,6 +4,7 @@ import swagger from '@fastify/swagger';
 import cookie from '@fastify/cookie';
 import session from '@fastify/secure-session';
 import jwt from '@fastify/jwt';
+import stat from '@fastify/static';
 import { Service } from './services/index.js';
 import { specification } from './specification/index.js';
 import { Security } from './security/index.js';
@@ -46,6 +47,16 @@ export async function build () {
     routePrefix: '/docs',
     exposeRoute: true
   };
+
+  fastify.setNotFoundHandler(function (_request, reply) {
+    reply.statusCode = 200;
+    reply.sendFile('index.html');
+  });
+
+  fastify.register(stat, {
+    root: `${process.cwd()}/src/public`,
+    preCompressed: true
+  });
 
   fastify.register(swagger, swaggerOptions);
   fastify.register(openAPIGlue, openAPIGlueOptions);
