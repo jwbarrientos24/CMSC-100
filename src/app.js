@@ -35,12 +35,12 @@ export async function build () {
   const service = new Service();
   const securityHandlers = new Security(fastify);
 
-  const openAPIGlueOptions = (
+  const openAPIGlueOptions = {
     specification,
     service,
     securityHandlers,
     prefix
-  );
+  };
 
   const swaggerOptions = {
     openapi: specification,
